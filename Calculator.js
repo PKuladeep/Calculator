@@ -7,6 +7,7 @@ const sign = document.querySelector('#sign')
 const decimal = document.querySelector('.decimal')
 const results = document.querySelector('#results')
 let justEvaluated = false
+let decimalPresence = false
 Screen.value = 0
 
 nums.forEach((button) => button.addEventListener('click', (e) => {
@@ -26,6 +27,9 @@ nums.forEach((button) => button.addEventListener('click', (e) => {
 
 backSpace.addEventListener('click', (e) => {
     let current = Screen.value
+    if (current.slice(-1) == '.') {
+        decimalPresence = false
+    }
     if (justEvaluated == false) {
         if (current.length >= 1) {
             Screen.value = current.slice(0, -1)
@@ -37,6 +41,8 @@ backSpace.addEventListener('click', (e) => {
 
 allClear.addEventListener('click', (e) => {
     Screen.value = 0
+    decimalPresence = false
+    justEvaluated = false
 })
 
 sign.addEventListener('click', (e) => {
@@ -45,26 +51,27 @@ sign.addEventListener('click', (e) => {
 })
 
 decimal.addEventListener('click', (e) => {
-    let current = Screen.value
-    if (justEvaluated == false) {
-        if (current.includes('.') == false) {
+    if (decimalPresence == false) {
         Screen.value += e.target.id
-        }
-    }else{
-        Screen.value = e.target.id
+        decimalPresence = true
     }
-    
 })
 
 operator.forEach((operand) => operand.addEventListener('click', (e) => {
     const operators = ['+', '-', '*', '/', '%']
     let current = Screen.value
+    if (current.includes('.') == true) {
+        decimalPresence = true
+    }
+
     let lastChar = current.slice(-1)
     if (operators.includes(lastChar) == false) {
         Screen.value += e.target.id
     }else{
         Screen.value = current.slice(0, -1) + e.target.id
     }
+    
+    decimalPresence = false
 }))
 
 function add(num1, num2) {
@@ -133,6 +140,11 @@ results.addEventListener('click', (e) => {
             }answer = expression[expression.length - 1]
         }
         Screen.value = answer
+        if (String(answer).includes('.') == true) {
+            decimalPresence = true
+        }else{
+            decimalPresence = false
+        }
     }
     justEvaluated = true
 })
