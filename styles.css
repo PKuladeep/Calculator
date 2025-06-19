@@ -1,54 +1,55 @@
-.calculator {
-    border-color: rgb(67, 66, 66);
-    border-style: solid;
-    border-width: 12px;
-    border-radius: 8px;
-    background-color: rgb(252, 252, 252);
-    padding: 10px;
-    text-wrap: nowrap;
-}
-
 .buttons {
-    display: flex;
-    width: 80px;
     height: 80px;
-    justify-content: center;
-    align-items: center;
+    width: 100px;
     font-size: 30px;
-    border-radius: 5px;
-    background-color: rgba(128, 128, 128, 0.286); 
-    flex-wrap: nowrap;   
-    cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: rgba(221, 136, 0, 0);
+    border-radius: 20px;
 }
 
 .buttons:hover {
-    opacity: 0.7;
-    transition: 0.3s;
+    opacity: 0.6;
+    transition-duration: 0.35s;
 }
 
-.rows {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 2px;
+.buttons:active {
+    opacity: 0.3;
 }
 
-Body {
-    min-height: 1000px;
+#screen, .buttons {
+    font-family: "Roboto Mono", Menlo, "DejaVu Sans Mono", Consolas, "Courier New", monospace;
+    color: white;
+}
+
+.console {
+    background-color: rgb(39, 39, 39);
+}
+
+.calculator {
+    border-color: rgb(39, 39, 39);
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 15px;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.67);
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    min-height: 800px;
     align-items: center;
 }
 
-.monitor {
-    background-color: rgba(184, 184, 184, 0.959);
-    height: 60px;
-    font-size: 50px;
-    margin-bottom: 10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#screen {
+    width: 410px;
+    height: 85px;
     overflow-x: auto;
     overflow-y: hidden;
+    background-color: gray;
+    color: white;
+    font-size: 50px;
     text-align: right;
-    max-width: 325px;
+    border-radius: 10px;
 }
-
-
